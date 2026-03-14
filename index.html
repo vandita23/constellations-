@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ursa Major – The Stars That Guide Us</title>
+<!-- Premium Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="customCursor"></div>
+<canvas id="universe"></canvas>
+<audio id="spaceAudio" loop>
+<source src="./audiopapkin-ambient-soundscapes-007-space-atmosphere-304974.mp3" type="audio/mpeg">
+</audio>
+<button id="soundToggle">🔊 Enable Space Sound</button>
+<section class="hero">
+<h1 class="title glow">Ursa Major</h1>
+<p class="typewriter">
+In the northern sky lies a constellation so ancient that
+every civilization has given it a story.
+Inside it lives seven stars that once guided travelers through darkness.
+</p>
+<button id="soundBtn">Enable Space Sound</button>
+<p class="scroll">Scroll to explore the sky</p>
+</section>
+<section class="story fade">
+<h2>The Great Bear</h2>
+<p>
+Thousands of years ago,
+before satellites and maps,
+people searched the sky for direction.
+</p>
+<p>
+They discovered a giant constellation stretching across the heavens —
+Ursa Major, the Great Bear.
+</p>
+<p>
+It became a celestial guardian watching over explorers,
+wanderers,
+and dreamers.
+</p>
+</section>
+
+<!-- GREAT BEAR CONSTELLATION ANIMATION -->
+<section class="great-bear-section">
+  <h2 class="glow bear-title">Ursa Major Awakens</h2>
+  <p class="bear-subtitle">Watch the Great Bear take shape in the night sky</p>
+  <div class="bear-canvas-wrap">
+    <svg id="bearSVG" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ── STARS ── -->
+      <circle class="bstar" id="bs1"  cx="560" cy="140" r="6"/>   <!-- Dubhe   -->
+      <circle class="bstar" id="bs2"  cx="500" cy="195" r="5"/>   <!-- Merak   -->
+      <circle class="bstar" id="bs3"  cx="435" cy="215" r="4.5"/> <!-- Phecda  -->
+      <circle class="bstar" id="bs4"  cx="488" cy="165" r="4"/>   <!-- Megrez  -->
+      <circle class="bstar" id="bs5"  cx="400" cy="172" r="5.5"/> <!-- Alioth  -->
+      <circle class="bstar" id="bs6"  cx="328" cy="152" r="5"/>   <!-- Mizar   -->
+      <circle class="bstar" id="bs7"  cx="255" cy="118" r="6"/>   <!-- Alkaid  -->
+      <circle class="bstar" id="bs8"  cx="480" cy="285" r="4"/>   <!-- Tania B -->
+      <circle class="bstar" id="bs9"  cx="422" cy="305" r="3.5"/> <!-- Tania A -->
+      <circle class="bstar" id="bs10" cx="532" cy="275" r="3.5"/> <!-- Merak L -->
+      <circle class="bstar" id="bs11" cx="622" cy="108" r="3.5"/> <!-- Muscida -->
+      <circle class="bstar" id="bs12" cx="678" cy="232" r="3.5"/> <!-- Talitha -->
+      <circle class="bstar" id="bs13" cx="648" cy="325" r="3.5"/> <!-- Frt Leg -->
+      <circle class="bstar" id="bs14" cx="458" cy="372" r="3.5"/> <!-- Bck Leg -->
+      <circle class="bstar" id="bs15" cx="698" cy="155" r="4"/>   <!-- Head    -->
+
+      <!-- ── DIPPER / BODY LINES ── -->
+      <line class="bline" id="bl1"  x1="560" y1="140" x2="500" y2="195" pathLength="1"/>
+      <line class="bline" id="bl2"  x1="500" y1="195" x2="488" y2="165" pathLength="1"/>
+      <line class="bline" id="bl3"  x1="488" y1="165" x2="435" y2="215" pathLength="1"/>
+      <line class="bline" id="bl4"  x1="488" y1="165" x2="400" y2="172" pathLength="1"/>
+      <line class="bline" id="bl5"  x1="400" y1="172" x2="328" y2="152" pathLength="1"/>
+      <line class="bline" id="bl6"  x1="328" y1="152" x2="255" y2="118" pathLength="1"/>
+      <line class="bline" id="bl7"  x1="560" y1="140" x2="622" y2="108" pathLength="1"/>
+      <line class="bline" id="bl8"  x1="622" y1="108" x2="698" y2="155" pathLength="1"/>
+      <line class="bline" id="bl9"  x1="698" y1="155" x2="678" y2="232" pathLength="1"/>
+      <line class="bline" id="bl10" x1="678" y1="232" x2="648" y2="325" pathLength="1"/>
+      <line class="bline" id="bl11" x1="648" y1="325" x2="532" y2="275" pathLength="1"/>
+      <line class="bline" id="bl12" x1="532" y1="275" x2="480" y2="285" pathLength="1"/>
+      <line class="bline" id="bl13" x1="480" y1="285" x2="422" y2="305" pathLength="1"/>
+      <line class="bline" id="bl14" x1="422" y1="305" x2="458" y2="372" pathLength="1"/>
+      <line class="bline" id="bl15" x1="458" y1="372" x2="435" y2="215" pathLength="1"/>
+
+      <!-- ── STAR NAME LABELS ── -->
+      <text class="slabel" id="lbl1" x="568" y="132">Dubhe</text>
+      <text class="slabel" id="lbl2" x="506" y="212">Merak</text>
+      <text class="slabel" id="lbl7" x="230" y="110">Alkaid</text>
+      <text class="slabel" id="lbl6" x="305" y="145">Mizar</text>
+      <text class="slabel" id="lbl5" x="372" y="165">Alioth</text>
+
+      <!-- ── NORTH STAR POINTER (dashed gold arrow) ── -->
+      <line class="pointer-line" id="ptrLine" x1="500" y1="195" x2="560" y2="140" pathLength="1" stroke-dasharray="0.08 0.05"/>
+      <line class="pointer-ext"  id="ptrExt"  x1="560" y1="140" x2="645" y2="48"  pathLength="1" stroke-dasharray="0.08 0.05"/>
+      <polygon class="ptr-arrow" id="ptrArrow" points="645,32 637,54 653,54"/>
+      <text class="ptr-label" id="ptrLabel" x="654" y="44">North Star &#8594;</text>
+    </svg>
+  </div>
+  <p class="bear-caption">The Great Bear guards the northern sky — <em>ancient, vast, and eternal</em></p>
+</section>
+<section class="story slide">
+<h2>The Pattern Within</h2>
+<p>
+Hidden within Ursa Major lies a smaller pattern of seven bright stars.
+</p>
+<p>
+This pattern is known today as the Big Dipper.
+</p>
+<p>
+It is not the entire constellation,
+but a simple guide hidden within something much larger.
+</p>
+</section>
+<section class="compass-section story fade">
+<h2>The Traveller's Compass</h2>
+<p>
+Two stars in the Big Dipper form a line pointing toward a single light —
+the North Star.
+</p>
+<p>
+Unlike every other star,
+the North Star barely moves.
+</p>
+<p>
+For centuries sailors,
+explorers,
+and lost wanderers followed it
+to find their way home.
+</p>
+
+<!-- Sailor Navigation Scene -->
+<div class="sailor-scene" id="sailorScene">
+
+  <!-- Ocean waves -->
+  <div class="ocean">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
+
+  <!-- Ship -->
+  <div class="ship" id="sailorShip">
+    <svg viewBox="0 0 120 90" width="120" height="90" xmlns="http://www.w3.org/2000/svg">
+      <!-- Hull -->
+      <path d="M10 60 Q60 75 110 60 L100 72 Q60 82 20 72 Z" fill="#8B6914" stroke="#5a4008" stroke-width="1.5"/>
+      <!-- Mast -->
+      <line x1="60" y1="15" x2="60" y2="62" stroke="#c8a96e" stroke-width="2.5"/>
+      <!-- Main sail -->
+      <path d="M60 18 L95 50 L60 55 Z" fill="rgba(240,230,200,0.85)" stroke="#c8a96e" stroke-width="1"/>
+      <!-- Small top sail -->
+      <path d="M60 15 L78 32 L60 35 Z" fill="rgba(240,230,200,0.7)" stroke="#c8a96e" stroke-width="0.8"/>
+      <!-- Flag -->
+      <path d="M60 15 L72 20 L60 25 Z" fill="#e05050"/>
+      <!-- Cabin window -->
+      <circle cx="38" cy="65" r="4" fill="rgba(255,220,100,0.6)" stroke="#8B6914" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Sky with Big Dipper stars -->
+  <svg class="nav-sky" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background stars (random small) -->
+    <circle cx="50"  cy="30"  r="1" fill="white" opacity="0.4"/>
+    <circle cx="130" cy="15"  r="1.2" fill="white" opacity="0.5"/>
+    <circle cx="210" cy="45"  r="0.9" fill="white" opacity="0.3"/>
+    <circle cx="310" cy="20"  r="1"   fill="white" opacity="0.45"/>
+    <circle cx="450" cy="10"  r="1.2" fill="white" opacity="0.5"/>
+    <circle cx="520" cy="55"  r="0.8" fill="white" opacity="0.35"/>
+    <circle cx="620" cy="25"  r="1"   fill="white" opacity="0.4"/>
+    <circle cx="700" cy="40"  r="1.1" fill="white" opacity="0.45"/>
+    <circle cx="760" cy="18"  r="0.9" fill="white" opacity="0.3"/>
+    <circle cx="80"  cy="80"  r="0.8" fill="white" opacity="0.3"/>
+    <circle cx="170" cy="100" r="1"   fill="white" opacity="0.4"/>
+    <circle cx="370" cy="75"  r="0.9" fill="white" opacity="0.35"/>
+    <circle cx="480" cy="90"  r="1"   fill="white" opacity="0.4"/>
+    <circle cx="680" cy="85"  r="1.1" fill="white" opacity="0.35"/>
+    <circle cx="740" cy="70"  r="0.9" fill="white" opacity="0.3"/>
+
+    <!-- Big Dipper pointer stars -->
+    <circle class="nav-star" id="nsDubhe" cx="580" cy="55"  r="4.5" fill="white"/>
+    <circle class="nav-star" id="nsMerak" cx="545" cy="95"  r="4"   fill="white"/>
+    <!-- Other dipper stars (dimmer) -->
+    <circle class="nav-star dim" cx="490" cy="105" r="3" fill="white" opacity="0.6"/>
+    <circle class="nav-star dim" cx="540" cy="75"  r="2.8" fill="white" opacity="0.5"/>
+    <circle class="nav-star dim" cx="460" cy="82"  r="3"   fill="white" opacity="0.6"/>
+    <circle class="nav-star dim" cx="400" cy="68"  r="2.8" fill="white" opacity="0.5"/>
+    <circle class="nav-star dim" cx="360" cy="52"  r="3"   fill="white" opacity="0.6"/>
+
+    <!-- Pointer line from Merak → Dubhe (extended to Polaris) -->
+    <line class="nav-pointer" id="navPtr1" x1="545" y1="95" x2="580" y2="55" pathLength="1"/>
+    <line class="nav-pointer" id="navPtr2" x1="580" y1="55" x2="640" y2="8"  pathLength="1" stroke-dasharray="0.06 0.04"/>
+
+    <!-- Polaris / North Star -->
+    <circle class="polaris-star" id="polarisCirc" cx="640" cy="8" r="6" fill="white"/>
+    <text class="polaris-label" x="650" y="12">Polaris</text>
+
+    <!-- Sailor's gaze line (from ship to polaris) -->
+    <line class="gaze-line" id="gazeLine" x1="100" y1="220" x2="640" y2="8" pathLength="1"/>
+
+    <!-- Compass rose (bottom right) -->
+    <g class="compass-rose" id="compassRose" transform="translate(710,200)">
+      <circle r="28" fill="none" stroke="rgba(200,169,110,0.4)" stroke-width="1"/>
+      <circle r="4"  fill="rgba(200,169,110,0.6)"/>
+      <line x1="0" y1="-28" x2="0" y2="28"  stroke="rgba(200,169,110,0.5)" stroke-width="1"/>
+      <line x1="-28" y1="0" x2="28" y2="0"  stroke="rgba(200,169,110,0.5)" stroke-width="1"/>
+      <line x1="-20" y1="-20" x2="20" y2="20" stroke="rgba(200,169,110,0.3)" stroke-width="0.8"/>
+      <line x1="20"  y1="-20" x2="-20" y2="20" stroke="rgba(200,169,110,0.3)" stroke-width="0.8"/>
+      <!-- N arrow -->
+      <polygon points="0,-28 -5,-14 5,-14" fill="#ffdd88" opacity="0.9"/>
+      <text y="-34" text-anchor="middle" fill="#ffdd88" font-size="9" font-family="Cinzel,serif" opacity="0.9">N</text>
+    </g>
+  </svg>
+
+  <!-- Caption labels that appear -->
+  <div class="nav-label" id="nlMerak"  style="top:42%;left:63%">Merak</div>
+  <div class="nav-label" id="nlDubhe"  style="top:24%;left:70%">Dubhe</div>
+  <div class="nav-label" id="nlPolaris" style="top:5%;left:77%">☆ Polaris — True North</div>
+  <div class="nav-quote" id="navQuote">"Follow the pointer stars. They never lie."</div>
+</div>
+</section>
+<section class="constellation">
+<h2 class="glow">The Big Dipper Forms</h2>
+<svg viewBox="0 0 800 400" class="dipper-lines">
+<line x1="100" y1="200" x2="200" y2="150"/>
+<line x1="200" y1="150" x2="300" y2="170"/>
+<line x1="300" y1="170" x2="400" y2="200"/>
+<line x1="200" y1="150" x2="180" y2="250"/>
+<line x1="180" y1="250" x2="260" y2="280"/>
+<line x1="260" y1="280" x2="340" y2="300"/>
+</svg>
+<div class="star s1"></div>
+<div class="star s2"></div>
+<div class="star s3"></div>
+<div class="star s4"></div>
+<div class="star s5"></div>
+<div class="star s6"></div>
+<div class="star s7"></div>
+</section>
+<section class="north-star">
+  <div class="darkness-layer" id="darknessLayer"></div>
+  <div class="cloud-wrap">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+  </div>
+  <h2 class="north-heading">The Guiding Star</h2>
+  <div class="hope-phase" id="phase1">
+    <p class="dark-text">Sometimes the sky fills with clouds.</p>
+    <p class="dark-text">The stars vanish.</p>
+    <p class="dark-text italic-em">The world goes dark.</p>
+  </div>
+  <div class="hope-phase hidden" id="phase2">
+    <div class="north-wrap">
+      <div class="north-rays"></div>
+      <div class="north"></div>
+    </div>
+    <p class="reveal-text">But one light refuses to hide.</p>
+  </div>
+  <div class="hope-phase hidden" id="phase3">
+    <div class="metaphor-grid">
+      <div class="meta-card" id="mc1">
+        <span class="meta-icon">&#x2601;</span>
+        <p><strong>Clouds</strong> are the hard seasons of life — grief, doubt, fear.</p>
+      </div>
+      <div class="meta-card" id="mc2">
+        <span class="meta-icon">&#x2B50;</span>
+        <p><strong>Polaris</strong> is hope — always there, even when you can't see it.</p>
+      </div>
+      <div class="meta-card" id="mc3">
+        <span class="meta-icon">&#x1F9ED;</span>
+        <p><strong>The Bear</strong> is every person who kept walking through the dark.</p>
+      </div>
+    </div>
+    <p class="hope-final-line">
+      Hope is not the absence of darkness.<br>
+      <em>It is the star that exists inside it.</em>
+    </p>
+  </div>
+  <div class="phase-dots">
+    <span class="dot active" data-phase="1"></span>
+    <span class="dot" data-phase="2"></span>
+    <span class="dot" data-phase="3"></span>
+  </div>
+</section>
+<section class="ending">
+<h2 class="glow">Look Up</h2>
+<p>
+Ursa Major reminds us how vast life can feel.
+But inside that vastness,
+the Big Dipper quietly shines.
+</p>
+<p>
+Seven small lights guiding those who feel lost.
+</p>
+
+<!-- Hope in darkness visual -->
+<div class="hope-darkness-wrap" id="hopeDarkWrap">
+  <canvas id="hopeCanvas"></canvas>
+  <div class="hope-words">
+    <span class="hw" id="hw1">Lost</span>
+    <span class="hw" id="hw2">Searching</span>
+    <span class="hw" id="hw3">Doubting</span>
+    <span class="hw" id="hw4">Afraid</span>
+    <span class="hw transform" id="hw5">Found</span>
+    <span class="hw transform" id="hw6">Guided</span>
+    <span class="hw transform" id="hw7">Believing</span>
+    <span class="hw transform" id="hw8">Home</span>
+  </div>
+</div>
+
+<p class="final">
+You don't need the entire universe to find your way.
+Sometimes,
+a few small stars are enough.
+</p>
+</section>
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+<script src="gsap-animations.js"></script>
+</body>
+</html>

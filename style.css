@@ -1,0 +1,632 @@
+/* ── FONT VARIABLES ─────────────────────────────── */
+:root {
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+}
+
+/* ── ORIGINAL STYLES (unchanged) ───────────────── */
+body{
+margin:0;
+font-family: var(--font-body);
+background:black;
+color:white;
+overflow-x:hidden;
+line-height:1.9;
+letter-spacing:0.02em;
+}
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+section{
+padding:120px 20%;
+text-align:center;
+}
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+.title{
+font-size:80px;
+font-family: var(--font-display);
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+}
+.glow{
+text-shadow:0 0 20px #6ea8ff;
+animation:glowPulse 3s infinite alternate;
+}
+@keyframes glowPulse{
+from{ text-shadow:0 0 10px #6ea8ff }
+to{ text-shadow:0 0 40px #6ea8ff }
+}
+.typewriter{
+overflow:hidden;
+border-right:2px solid white;
+white-space:nowrap;
+animation:typing 6s steps(60,end), blink 1s infinite;
+font-family: var(--font-body);
+font-size: 1.15rem;
+font-style: italic;
+font-weight: 300;
+letter-spacing: 0.06em;
+color: rgba(255,255,255,0.85);
+}
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+@keyframes blink{
+50%{border-color:transparent}
+}
+button{
+margin-top:20px;
+padding:10px 20px;
+background:#0a2cff;
+border:none;
+color:white;
+border-radius:20px;
+cursor:pointer;
+font-family: var(--font-heading);
+font-size: 0.8rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+}
+.fade{
+animation:fadeIn 3s;
+}
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(40px)}
+to{opacity:1; transform:translateY(0)}
+}
+.slide{
+animation:slideIn 3s;
+}
+@keyframes slideIn{
+from{transform:translateX(-80px); opacity:0}
+to{transform:translateX(0); opacity:1}
+}
+.constellation{
+height:600px;
+position:relative;
+}
+.star{
+width:10px;
+height:10px;
+background:white;
+border-radius:50%;
+position:absolute;
+opacity:0;
+box-shadow:0 0 10px white;
+transition:1s;
+}
+.star.visible{
+opacity:1;
+transform:scale(1.5);
+box-shadow:0 0 25px #7cc6ff;
+}
+.s1{top:300px;left:150px;}
+.s2{top:250px;left:250px;}
+.s3{top:270px;left:350px;}
+.s4{top:300px;left:450px;}
+.s5{top:350px;left:230px;}
+.s6{top:380px;left:310px;}
+.s7{top:400px;left:390px;}
+.dipper-lines{
+position:absolute;
+width:100%;
+height:100%;
+stroke:#7cc6ff;
+stroke-width:2;
+opacity:0;
+transition:2s;
+}
+.dipper-lines.visible{
+opacity:0.7;
+}
+.north{
+width:18px;
+height:18px;
+background:white;
+border-radius:50%;
+margin:50px auto;
+animation:northGlow 2s infinite alternate;
+}
+@keyframes northGlow{
+from{box-shadow:0 0 10px white}
+to{box-shadow:0 0 60px #7cc6ff}
+}
+.final{
+font-size:26px;
+font-weight:bold;
+margin-top:40px;
+}
+
+/* ── TYPOGRAPHY ENHANCEMENTS (additive only) ────── */
+
+/* Section headings */
+.story h2,
+.constellation h2,
+.north-star h2,
+.ending h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 2.4rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+/* Body paragraphs */
+.story p,
+.north-star p,
+.ending p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 640px;
+  margin: 0 auto 1.2rem;
+}
+
+/* Final statement */
+.final {
+  font-family: var(--font-heading);
+  font-size: 1.55rem !important;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #fff;
+  line-height: 2;
+}
+
+/* Scroll hint */
+.scroll {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 32px;
+}
+
+/* GSAP initial hidden states */
+.gsap-hero-title  { opacity: 0; }
+.gsap-hero-sub    { opacity: 0; }
+.gsap-section-h2  { opacity: 0; transform: translateY(30px); }
+.gsap-section-p   { opacity: 0; transform: translateY(20px); }
+
+/* ── GREAT BEAR SECTION ─────────────────────────── */
+.great-bear-section {
+  padding: 100px 5%;
+  text-align: center;
+  position: relative;
+}
+.bear-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.4rem;
+}
+.bear-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  margin-bottom: 40px;
+}
+.bear-canvas-wrap {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#bearSVG {
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  display: block;
+  overflow: visible;
+}
+.bstar {
+  fill: #fff;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px #7cc6ff);
+}
+/* lines: use pathLength="1" trick so dasharray works for any length */
+.bline {
+  stroke: #7cc6ff;
+  stroke-width: 1.8;
+  opacity: 0;
+  fill: none;
+  pathLength: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.slabel {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  fill: rgba(124,198,255,0.7);
+  opacity: 0;
+  letter-spacing: 0.1em;
+}
+.pointer-line, .pointer-ext {
+  stroke: #ffdd88;
+  stroke-width: 1.5;
+  fill: none;
+  pathLength: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.ptr-arrow {
+  fill: #ffdd88;
+  opacity: 0;
+}
+.ptr-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  fill: #ffdd88;
+  opacity: 0;
+  letter-spacing: 0.08em;
+}
+.bear-caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 28px;
+  letter-spacing: 0.05em;
+  opacity: 0;
+}
+
+/* ── NORTH STAR / HOPE METAPHOR ─────────────────── */
+.north-star {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 10%;
+  overflow: hidden;
+}
+.darkness-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  pointer-events: none;
+  z-index: 1;
+  transition: background 2s;
+}
+.darkness-layer.dark { background: rgba(0,0,0,0.88); }
+
+/* clouds */
+.cloud-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(30,40,60,0.92) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(30px);
+}
+.c1 { width: 600px; height: 200px; top: 5%;  left: -10%; }
+.c2 { width: 700px; height: 250px; top: 15%; right: -15%; }
+.c3 { width: 500px; height: 180px; top: 30%; left: 20%; }
+
+.north-heading {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 10;
+  margin-bottom: 48px;
+  opacity: 0;
+}
+
+/* hope phases */
+.hope-phase { z-index: 10; text-align: center; max-width: 680px; }
+.hope-phase.hidden { display: none; }
+
+.dark-text {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  line-height: 2.2;
+  opacity: 0;
+}
+.italic-em { font-style: italic; font-size: 1.6rem !important; }
+
+/* north star glow */
+.north-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.north-rays {
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,198,255,0.35) 0%, transparent 70%);
+  animation: rayPulse 2.5s infinite;
+  opacity: 0;
+}
+@keyframes rayPulse {
+  0%,100% { transform: scale(1);   opacity: 0.4; }
+  50%      { transform: scale(1.7); opacity: 0.15; }
+}
+.north {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  animation: northGlow 2s infinite alternate;
+}
+.reveal-text {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.06em;
+  opacity: 0;
+}
+
+/* metaphor cards */
+.metaphor-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.meta-card {
+  background: rgba(124,198,255,0.07);
+  border: 1px solid rgba(124,198,255,0.2);
+  border-radius: 16px;
+  padding: 28px 24px;
+  max-width: 220px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.meta-icon { font-size: 2rem; display: block; margin-bottom: 12px; }
+.meta-card p {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  color: rgba(255,255,255,0.85) !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+.hope-final-line {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  color: #fff;
+  opacity: 0;
+}
+.hope-final-line em {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #aad4ff;
+  display: block;
+  margin-top: 6px;
+}
+
+/* phase dots */
+.phase-dots {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 48px;
+  z-index: 10;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.4s, transform 0.3s;
+}
+.dot.active { background: #7cc6ff; transform: scale(1.4); }
+
+/* ── CUSTOM CURSOR ────────────────────────────────── */
+*, *::before, *::after { cursor: none !important; }
+
+#customCursor {
+  position: fixed;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #7cc6ff 55%, transparent 100%);
+  box-shadow: 0 0 12px #7cc6ff, 0 0 24px rgba(124,198,255,0.5);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease;
+}
+#customCursor.clicking {
+  transform: translate(-50%,-50%) scale(0.6);
+  box-shadow: 0 0 20px #fff, 0 0 40px #7cc6ff;
+}
+
+/* ── SAILOR NAVIGATION SCENE ─────────────────────── */
+.compass-section {
+  padding-bottom: 60px;
+}
+.sailor-scene {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  margin: 60px auto 0;
+  height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #000510 0%, #001228 55%, #0a2240 100%);
+  border: 1px solid rgba(124,198,255,0.15);
+  box-shadow: 0 0 60px rgba(0,20,60,0.8);
+  opacity: 0;
+}
+
+/* Ocean */
+.ocean {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(180deg, #012244 0%, #001830 100%);
+  overflow: hidden;
+}
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(20,80,140,0.45);
+}
+.wave1 { top: 10px; left: -50%; animation: waveRoll 6s linear infinite; }
+.wave2 { top: 20px; left: -60%; animation: waveRoll 9s linear infinite reverse; opacity: 0.6; }
+.wave3 { top: 30px; left: -40%; animation: waveRoll 12s linear infinite; opacity: 0.4; }
+@keyframes waveRoll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(25%); }
+}
+
+/* Ship */
+.ship {
+  position: absolute;
+  bottom: 58px;
+  left: 4%;
+  opacity: 0;
+  animation: shipRock 4s ease-in-out infinite;
+  transform-origin: center bottom;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+}
+@keyframes shipRock {
+  0%,100% { transform: rotate(-1.5deg) translateY(0); }
+  50%      { transform: rotate(1.5deg)  translateY(-4px); }
+}
+
+/* Nav sky SVG */
+.nav-sky {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.nav-star {
+  filter: drop-shadow(0 0 4px white);
+  opacity: 0;
+}
+.nav-pointer {
+  stroke: #ffdd88;
+  stroke-width: 1.5;
+  fill: none;
+  pathLength: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.polaris-star {
+  opacity: 0;
+  filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px #aad4ff);
+}
+.polaris-label {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  fill: #aad4ff;
+  opacity: 0;
+  letter-spacing: 0.1em;
+}
+.gaze-line {
+  stroke: rgba(255,221,136,0.25);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 0.03 0.02;
+  pathLength: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+.compass-rose { opacity: 0; }
+
+/* Nav labels */
+.nav-label {
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  color: rgba(200,169,110,0.85);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+}
+.nav-label#nlPolaris {
+  color: #aad4ff;
+  font-size: 8px;
+}
+.nav-quote {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+  opacity: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ── HOPE IN DARKNESS CANVAS ─────────────────────── */
+.hope-darkness-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 260px;
+  margin: 48px auto 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+}
+#hopeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+.hope-words {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px 28px;
+  padding: 24px;
+}
+.hw {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.6s;
+}
+.hw.transform {
+  color: #aad4ff;
+  text-shadow: 0 0 14px rgba(124,198,255,0.6);
+}
